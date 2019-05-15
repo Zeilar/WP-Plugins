@@ -114,7 +114,8 @@ class LatestPostsWidget extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_name('title'); ?>"><?php _e('Title:'); ?></label>
-			<input class="widefat" 
+			<input 
+                class="widefat" 
 				id="<?php echo $this->get_field_id('title'); ?>" 
 				name="<?php echo $this->get_field_name('title'); ?>" 
 				type="text" 
@@ -123,7 +124,8 @@ class LatestPostsWidget extends WP_Widget {
 		</p>
         <p>
 			<label for="<?php echo $this->get_field_name('amount'); ?>"><?php _e('Amount:'); ?></label>
-			<input class="widefat" 
+			<input 
+                class="widefat" 
 				id="<?php echo $this->get_field_id('amount'); ?>" 
 				name="<?php echo $this->get_field_name('amount'); ?>" 
 				type="number"
@@ -133,7 +135,9 @@ class LatestPostsWidget extends WP_Widget {
 		</p>
         <p>
             <label for="<?php echo $this->get_field_id( 'author' ); ?>">Author?</label>
-            <input class="checkbox" type="checkbox" <?php checked( $instance[ 'author' ], 'on' ); ?> 
+            <input 
+                class="checkbox" 
+                type="checkbox" <?php checked( $instance[ 'author' ], 'on' ); ?> 
                 id="<?php echo $this->get_field_id( 'author' ); ?>" 
                 name="<?php echo $this->get_field_name( 'author' ); ?>" 
             /> 
