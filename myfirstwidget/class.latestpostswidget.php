@@ -63,15 +63,13 @@ class LatestPostsWidget extends WP_Widget {
                 $posts->the_post();
                 $output .= "<li>";
                 $output .= "<a href='" . get_the_permalink() . "'>";
-                $output .= get_the_title();
-                $output .= "</a>";
+                $output .= get_the_title() . "</a>";
                 if ($author) {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a> in ';
                 } else {
                     $output .= ' in ';
                 }
-                $output .= get_the_category_list(', ');
-                $output .= '<br>';
+                $output .= get_the_category_list(', ') . "<br>";
                 $post_date = new DateTime(get_the_date());
                 $age = date_diff($today, $post_date);
                 $years = $age->y . ' years ';
