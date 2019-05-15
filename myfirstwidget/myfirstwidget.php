@@ -13,8 +13,10 @@
  */
 
 require("class.MyFirstWidget.php");
+require("class.LatestPostsWidget.php");
 
 function mfw_widgets_init() {
     register_widget('MyFirstWidget');
+    register_widget('LatestPostsWidget');
 }
 add_action('widgets_init', 'mfw_widgets_init');
