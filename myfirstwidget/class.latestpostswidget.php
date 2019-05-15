@@ -68,7 +68,7 @@ class LatestPostsWidget extends WP_Widget {
                 if ($author) {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a> in ';
                 } else {
-                    $output .= '<br>';
+                    $output .= ' in ';
                 }
                 $output .= get_the_category_list(', ');
                 $output .= '<br>';

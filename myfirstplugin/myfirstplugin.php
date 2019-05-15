@@ -18,9 +18,11 @@ function mfp_latest_posts($atts) {
         'posts_per_page' => 3,
         'title' => false,
     ], $atts);
+
     $posts = new WP_Query([
         'posts_per_page' => $atts['posts_per_page'],
     ]);
+    
     $output = "<h1>Latest Posts</h1>";
     if ($posts->have_posts()) {
         $today = new DateTime($today);
