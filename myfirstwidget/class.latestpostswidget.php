@@ -37,6 +37,10 @@ class LatestPostsWidget extends WP_Widget {
 		$amount = isset($instance['amount'])
 			? (int)$instance['amount']
             : 3;
+
+        $author = isset($instance['author'])
+			? $instance['author']
+            : 3;
         
         if ($amount <= 0) {
             $amount = 3;
@@ -59,14 +63,13 @@ class LatestPostsWidget extends WP_Widget {
                 $posts->the_post();
                 $output .= "<li>";
                 $output .= "<a href='" . get_the_permalink() . "'>";
-                if (!$atts['title']) {
-                    $output .= get_the_title();
-                } else {
-                    $output .= $atts['title'];
-                }
+                $output .= get_the_title();
                 $output .= "</a>";
-                $output .= ' by <a href="' . get_the_author_link() . '">';
-                $output .= get_the_author() . '</a> in ';
+                if ($author) {
+                    $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a> in ';
+                } else {
+                    $output .= '<br>';
+                }
                 $output .= get_the_category_list(', ');
                 $output .= '<br>';
                 $post_date = new DateTime(get_the_date());
@@ -103,6 +106,10 @@ class LatestPostsWidget extends WP_Widget {
         $amount = isset($instance['amount'])
 			? (int)$instance['amount']
             : '';
+
+        $author = isset($instance['author'])
+			? $instance['author']
+            : false;
 		
 		?>
 		<p>
@@ -124,6 +131,13 @@ class LatestPostsWidget extends WP_Widget {
 				value="<?php echo esc_attr($amount); ?>"
 			/>
 		</p>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'author' ); ?>">Author?</label>
+            <input class="checkbox" type="checkbox" <?php checked( $instance[ 'author' ], 'on' ); ?> 
+                id="<?php echo $this->get_field_id( 'author' ); ?>" 
+                name="<?php echo $this->get_field_name( 'author' ); ?>" 
+            /> 
+        </p>
 	<?php
 } // instance
 
@@ -145,7 +159,11 @@ class LatestPostsWidget extends WP_Widget {
             
         $instance['amount'] = !empty($new_instance['amount'])
 			? $new_instance['amount']
-			: '';
+            : '';
+
+        $instance['author'] = !empty($new_instance['author'])
+			? $new_instance['author']
+            : false;
         
 		return $instance;
 	}
