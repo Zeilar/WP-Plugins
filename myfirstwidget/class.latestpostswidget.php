@@ -113,7 +113,7 @@ class LatestPostsWidget extends WP_Widget {
 		
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_name('title'); ?>"><?php _e('Title:'); ?></label>
+			<label for="<?php echo $this->get_field_name('title'); ?>"><?php _e('Title'); ?></label>
 			<input 
                 class="widefat" 
 				id="<?php echo $this->get_field_id('title'); ?>" 
@@ -123,7 +123,7 @@ class LatestPostsWidget extends WP_Widget {
 			/>
 		</p>
         <p>
-			<label for="<?php echo $this->get_field_name('amount'); ?>"><?php _e('Amount:'); ?></label>
+			<label for="<?php echo $this->get_field_name('amount'); ?>"><?php _e('Post Amount'); ?></label>
 			<input 
                 class="widefat" 
 				id="<?php echo $this->get_field_id('amount'); ?>" 
@@ -134,12 +134,12 @@ class LatestPostsWidget extends WP_Widget {
 			/>
 		</p>
         <p>
-            <label for="<?php echo $this->get_field_id( 'author' ); ?>">Author?</label>
+            <label for="<?php echo $this->get_field_id('author'); ?>">Author?</label>
             <input 
                 class="checkbox" 
-                type="checkbox" <?php checked( $instance[ 'author' ], 'on' ); ?> 
-                id="<?php echo $this->get_field_id( 'author' ); ?>" 
-                name="<?php echo $this->get_field_name( 'author' ); ?>" 
+                type="checkbox" <?php checked($instance['author'], 'on'); ?> 
+                id="<?php echo $this->get_field_id('author'); ?>" 
+                name="<?php echo $this->get_field_name('author'); ?>" 
             /> 
         </p>
 	<?php
