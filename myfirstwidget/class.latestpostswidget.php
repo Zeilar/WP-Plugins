@@ -62,8 +62,7 @@ class LatestPostsWidget extends WP_Widget {
             while ($posts->have_posts()) {
                 $posts->the_post();
                 $output .= "<li>";
-                $output .= "<a href='" . get_the_permalink() . "'>";
-                $output .= get_the_title() . "</a>";
+                $output .= "<a href='" . get_the_permalink() . "'>" . get_the_title() . "</a>";
                 if ($author) {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a>';
                 }
