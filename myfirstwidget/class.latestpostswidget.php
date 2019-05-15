@@ -41,10 +41,10 @@ class LatestPostsWidget extends WP_Widget {
         $author = isset($instance['author'])
 			? $instance['author']
             : 3;
-        
-        if ($amount <= 0) {
-            $amount = 3;
-        }
+		
+		$amount = $amount <= 0 
+			? 3 
+			: false;
 
 		echo $before_widget;
 
@@ -82,7 +82,7 @@ class LatestPostsWidget extends WP_Widget {
             $output .= "No posts were found :(";
         }
         echo $output;
-	}
+	} // function widget
 
 	/**
 	 * Back-end widget form.
@@ -91,6 +91,7 @@ class LatestPostsWidget extends WP_Widget {
 	 *
 	 * @param array $instance Previously saved values from database.
 	 */
+
 	public function form($instance) {
 		if (isset($instance['title'])) {
 			$title = $instance['title'];
@@ -138,7 +139,7 @@ class LatestPostsWidget extends WP_Widget {
             /> 
         </p>
 	<?php
-} // instance
+} // function form
 
 	/**
 	 * Sanitize widget form values as they are saved.
@@ -166,5 +167,4 @@ class LatestPostsWidget extends WP_Widget {
         
 		return $instance;
 	}
-
 } // class LatestPostsWidget
