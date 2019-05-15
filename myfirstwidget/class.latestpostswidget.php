@@ -67,15 +67,14 @@ class LatestPostsWidget extends WP_Widget {
                 if ($author) {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a>';
                 }
-                $output .= ' in ';
-                $output .= get_the_category_list(', ') . "<br>";
+                $output .= ' in ' . get_the_category_list(', ') . "<br>";
                 $post_date = new DateTime(get_the_date());
                 $age = date_diff($today, $post_date);
                 $years = $age->y . ' years ';
                 $months = $age->m . ' months ';
                 $days = $age->d . ' days ';
                 $age = $years . $months . $days;
-                $output .= 'Posted: ' . $age . ' ago'; 
+                $output .= 'Posted ' . $age . ' ago'; 
                 $output .= "</li>";
             }
             wp_reset_postdata();
