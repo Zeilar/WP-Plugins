@@ -67,13 +67,21 @@ class LatestPostsWidget extends WP_Widget {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a>';
                 }
                 $output .= ' in ' . get_the_category_list(', ') . "<br>";
-                $post_date = new DateTime(get_the_date());
-                $age = date_diff($today, $post_date);
+				$post_date = new DateTime(get_the_date());
+				
+				/* 
+				
+				Get absolute time difference
+
+				$age = date_diff($today, $post_date);
                 $years = $age->y . ' years ';
                 $months = $age->m . ' months ';
                 $days = $age->d . ' days ';
-                $age = $years . $months . $days;
-                $output .= 'Posted ' . $age . ' ago'; 
+				$age = $years . $months . $days;
+
+				*/
+
+                $output .= 'Posted ' . human_time_diff(get_the_time('U')) . ' ago'; 
                 $output .= "</li>";
             }
             wp_reset_postdata();
@@ -125,6 +133,7 @@ class LatestPostsWidget extends WP_Widget {
 				id="<?php echo $this->get_field_id('amount'); ?>" 
 				name="<?php echo $this->get_field_name('amount'); ?>" 
 				type="number"
+				min ="1"
                 max="10" 
 				value="<?php echo esc_attr($amount); ?>"
 			/>
@@ -133,7 +142,7 @@ class LatestPostsWidget extends WP_Widget {
             <label for="<?php echo $this->get_field_id('author'); ?>">Author?</label>
             <input 
                 class="checkbox" 
-                type="checkbox" <?php checked($instance['author'], 'on'); ?> 
+                type="checkbox" <?php checked($instance['author'], true); ?> 
                 id="<?php echo $this->get_field_id('author'); ?>" 
                 name="<?php echo $this->get_field_name('author'); ?>" 
             /> 
@@ -161,9 +170,7 @@ class LatestPostsWidget extends WP_Widget {
 			? $new_instance['amount']
             : '';
 
-        $instance['author'] = !empty($new_instance['author'])
-			? $new_instance['author']
-            : false;
+        $instance['author'] = !empty($new_instance['author']);
         
 		return $instance;
 	}
