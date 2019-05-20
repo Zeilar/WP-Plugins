@@ -13,7 +13,7 @@
  * Domain Path: /languages
  */
 
-function relatedposts($user_atts = [], $content = null, $tag = '') {
+function get_related_posts($user_atts = [], $content = null, $tag = '') {
 
     $default_atts = [
         'posts_per_page' => 3,
@@ -40,12 +40,9 @@ function relatedposts($user_atts = [], $content = null, $tag = '') {
         while ($posts->have_posts()) {
             $posts->the_post();
             $output .= "<li>";
-            $output .= "<a href='" . get_the_permalink() . "'>";
-            $output .= get_the_title();
-            $output .= "</a>";
-            $output .= ' by <a href="' . get_the_author_link() . '">';
-            $output .= get_the_author() . '</a> in ';
-            $output .= get_the_category_list(', ');
+            $output .= "<a href='" . get_the_permalink() . "'>" . get_the_title() . "</a>";
+            $output .= ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a>';
+            $output .= ' in ' . get_the_category_list(', ');
             $output .= '<br>';
             $output .= 'Posted: ' . human_time_diff(get_the_time('U')) . ' ago'; 
             $output .= "</li>";
@@ -61,7 +58,11 @@ function relatedposts($user_atts = [], $content = null, $tag = '') {
     return $output;
 }
 
+function relatedposts_shortcode($user_atts = [], $content = null, $tag = '') {
+    return get_related_posts($user_atts, $content, $tag);
+}
+
 function relatedposts_init() {
-    add_shortcode('related-posts', 'relatedposts');
+    add_shortcode('related-posts', 'relatedposts_shortcode');
 }
 add_action('init', 'relatedposts_init');

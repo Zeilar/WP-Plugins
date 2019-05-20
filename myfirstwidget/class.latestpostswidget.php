@@ -41,10 +41,6 @@ class LatestPostsWidget extends WP_Widget {
         $author = isset($instance['author'])
 			? $instance['author']
             : 3;
-		
-		$amount = $amount <= 0 
-			? 3 
-			: false;
 
 		echo $before_widget;
 
