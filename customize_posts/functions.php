@@ -6,7 +6,7 @@ function get_related_posts($user_atts = [], $content = null, $tag = '') {
     // Default Attributes (If User Makes No Input)
     $default_atts = [
         'posts_per_page' => 3,
-        'title' => __('Related Posts', 'relatedposts'),
+        'title' => __('Related Posts', 'cp_posts'),
     ];
     
     // Combines Default And User Provided Attributes

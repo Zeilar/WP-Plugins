@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Plugin Name: Related Posts
+ * Plugin Name: Customize Posts
  * Plugin URI:
- * Description: Shows related posts.
+ * Description: Customize how and which posts are displayed.
  * Version:     0.1
  * Author:      Philip Angelin
  * Author URI:
  * License:     WTFPL
  * License URI: www.wtfpl.net
- * Text Domain: relatedposts
+ * Text Domain: customize_posts
  * Domain Path: /languages
  */
 
 require("functions.php");
 require("filters.php");
 require("shortcodes.php");
-require("class.latestpostswidget.php");
 require("widgets2.php");
+require("settings.php");

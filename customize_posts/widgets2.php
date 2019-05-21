@@ -1,5 +1,7 @@
 <?php
 
+require("class.latestpostswidget.php");
+
 // Load Widgets
 function latestposts_widget_init() {
     register_widget('LatestPostsWidget');
