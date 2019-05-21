@@ -49,9 +49,15 @@ class LatestPostsWidget extends WP_Widget {
 		}
         echo $after_widget;
         
-        $posts = new WP_Query([
-            'posts_per_page' => $amount,
-        ]);
+        $current_post_id = get_the_ID();
+    	$category_ids = wp_get_post_terms($current_post_id, 'category', ['fields' => 'ids']);
+
+		$posts = new WP_Query([
+			'posts_per_page' => $amount,
+			'post__not_in' => [$current_post_id],
+			'category__in' => $category_ids,
+		]);
+		
         if ($posts->have_posts()) {
             $today = new DateTime($today);
             $output .= "<ul>";
