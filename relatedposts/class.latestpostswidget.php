@@ -42,13 +42,16 @@ class LatestPostsWidget extends WP_Widget {
 			? $instance['author']
             : 3;
 
-		echo $before_widget;
+        if(is_single()) {
 
-		if (! empty($title)) {
-			echo $before_title . $title . $after_title;
-		}
-        echo $after_widget;
-        
+		    echo $before_widget;
+
+            if (!empty($title)) {
+                echo $before_title . $title . $after_title;
+            }
+            
+            echo $after_widget;
+        }        
         $current_post_id = get_the_ID();
     	$category_ids = wp_get_post_terms($current_post_id, 'category', ['fields' => 'ids']);
 
@@ -96,7 +99,9 @@ class LatestPostsWidget extends WP_Widget {
             $output .= "No posts were found :(";
         }
 
-        echo $output;
+        if(is_single()) {
+            echo $output;
+        }
 	} // function widget
 
 	/**
