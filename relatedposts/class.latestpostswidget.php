@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Adds MyFirstWidget widget.
+ * Adds Latest Posts widget.
  */
 
 class LatestPostsWidget extends WP_Widget {
@@ -14,7 +14,7 @@ class LatestPostsWidget extends WP_Widget {
 			'latest_posts_widget', // Base ID
 			'Latest Posts Widget', // Name
 			[
-				'description' => __('Showing latest posts', 'myfirstwidget'),
+				'description' => __('Showing latest posts', 'relatedposts'),
 			] // Args
 		);
 	}
@@ -32,7 +32,7 @@ class LatestPostsWidget extends WP_Widget {
 			$title = $instance['title'];
 		}
 		else {
-			$title = __('New title', 'myfirstwidget');
+			$title = __('New title', 'relatedposts');
 		}
 		$amount = isset($instance['amount'])
 			? (int)$instance['amount']
@@ -59,20 +59,24 @@ class LatestPostsWidget extends WP_Widget {
 		]);
 		
         if ($posts->have_posts()) {
-            $today = new DateTime($today);
+            
+            //$today = new DateTime($today);
             $output .= "<ul>";
+
             while ($posts->have_posts()) {
+
                 $posts->the_post();
                 $output .= "<li>";
                 $output .= "<a href='" . get_the_permalink() . "'>" . get_the_title() . "</a>";
+
                 if ($author) {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a>';
                 }
+
                 $output .= ' in ' . get_the_category_list(', ') . "<br>";
 				$post_date = new DateTime(get_the_date());
 				
 				/* 
-				
 				Get absolute time difference
 
 				$age = date_diff($today, $post_date);
@@ -80,7 +84,6 @@ class LatestPostsWidget extends WP_Widget {
                 $months = $age->m . ' months ';
                 $days = $age->d . ' days ';
 				$age = $years . $months . $days;
-
 				*/
 
                 $output .= 'Posted ' . human_time_diff(get_the_time('U')) . ' ago'; 
@@ -88,9 +91,11 @@ class LatestPostsWidget extends WP_Widget {
             }
             wp_reset_postdata();
             $output .= "</ul>";
+
         } else {
             $output .= "No posts were found :(";
         }
+
         echo $output;
 	} // function widget
 
@@ -103,11 +108,12 @@ class LatestPostsWidget extends WP_Widget {
 	 */
 
 	public function form($instance) {
+
 		if (isset($instance['title'])) {
 			$title = $instance['title'];
 		}
 		else {
-			$title = __('New title', 'myfirstwidget');
+			$title = __('New title', 'relatedposts');
         }
         $amount = isset($instance['amount'])
 			? (int)$instance['amount']
@@ -163,6 +169,7 @@ class LatestPostsWidget extends WP_Widget {
 	 * @return array Updated safe values to be saved.
 	 */
 	public function update($new_instance, $old_instance) {
+        
 		$instance = [];
 		$instance['title'] = (!empty($new_instance['title'])) 
 			? strip_tags($new_instance['title']) // strip_tags removes HTML tags
