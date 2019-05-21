@@ -3,19 +3,21 @@
 // Gets Posts Related To The Current One
 function get_related_posts($user_atts = [], $content = null, $tag = '') {
 
-    // Default Attributes (If User Makes No Input)
+    $default_title = get_option('cp_related_posts_title', __('Related Posts', 'customize_posts'));
+
+    // Default Attributes (If user makes no input)
     $default_atts = [
         'posts_per_page' => 3,
-        'title' => __('Related Posts', 'cp_posts'),
+        'title' => $default_title,
     ];
     
-    // Combines Default And User Provided Attributes
+    // Combines default and user provided attributes
     $atts = shortcode_atts($default_atts, $user_atts, $tag);
 
     $current_post_id = get_the_ID();
     $category_ids = wp_get_post_terms($current_post_id, 'category', ['fields' => 'ids']);
 
-    // Query Includes Filtering Of Posts That Are Same As Current In Either ID/Category
+    // Query includes filtering if posts that are the same as current in either ID/category
     $posts = new WP_Query([
         'posts_per_page' => $atts['posts_per_page'],
         'post__not_in' => [$current_post_id],
@@ -43,7 +45,7 @@ function get_related_posts($user_atts = [], $content = null, $tag = '') {
         $output .= "</ul>";
 
     } else {
-        $output .= "No posts were found :(";
+        $output .= __('No posts were found :(', 'customize_posts');
     }
 
     return $output;

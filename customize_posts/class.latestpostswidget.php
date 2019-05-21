@@ -14,7 +14,7 @@ class LatestPostsWidget extends WP_Widget {
 			'latest_posts_widget', // Base ID
 			'Latest Posts Widget', // Name
 			[
-				'description' => __('Showing latest posts', 'cp_posts'),
+				'description' => __('Showing latest posts', 'customize_posts'),
 			] // Args
 		);
 	}
@@ -32,7 +32,7 @@ class LatestPostsWidget extends WP_Widget {
 			$title = $instance['title'];
 		}
 		else {
-			$title = __('New title', 'cp_posts');
+			$title = __('New title', 'customize_posts');
 		}
 		$amount = isset($instance['amount'])
 			? (int)$instance['amount']
@@ -51,7 +51,8 @@ class LatestPostsWidget extends WP_Widget {
             }
             
             echo $after_widget;
-        }        
+		}     
+		   
         $current_post_id = get_the_ID();
     	$category_ids = wp_get_post_terms($current_post_id, 'category', ['fields' => 'ids']);
 
@@ -118,7 +119,7 @@ class LatestPostsWidget extends WP_Widget {
 			$title = $instance['title'];
 		}
 		else {
-			$title = __('New title', 'cp_posts');
+			$title = __('New title', 'customize_posts');
         }
         $amount = isset($instance['amount'])
 			? (int)$instance['amount']
