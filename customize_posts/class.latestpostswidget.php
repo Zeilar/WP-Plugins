@@ -100,9 +100,8 @@ class LatestPostsWidget extends WP_Widget {
             $output .= "No posts were found :(";
         }
 
-        if(is_single()) {
-            echo $output;
-        }
+			echo $output;
+			
 	} // function widget
 
 	/**

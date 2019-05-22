@@ -2,6 +2,7 @@
 
 // Add settings page to the dashboard menu
 function cp_add_settings_page_to_menu() {
+
     add_submenu_page(
         'options-general.php', // Parent page
         'Customize Posts Settings', // Settings page title
@@ -42,10 +43,10 @@ function cp_general_options_section() {
 function cp_related_posts_title() {
     ?>
         <input 
-        type="text" 
-        name="cp_related_posts_title" 
-        id ="cp_related_posts_title"
-        value="<?php echo get_option('cp_related_posts_title', __('Related Posts', 'customize_posts')); ?>"
+            type="text" 
+            name="cp_related_posts_title" 
+            id ="cp_related_posts_title"
+            value="<?php echo get_option('cp_related_posts_title', __('Related Posts', 'customize_posts')); ?>"
         >
     <?php
 }
@@ -64,6 +65,7 @@ function cp_append_related_posts() {
 
 // Register settings
 function cp_settings_init() {
+
     add_settings_section(
         'cp_general_options', 
         __('General Options', 'customize_posts'), 
