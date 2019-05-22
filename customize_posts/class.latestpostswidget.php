@@ -28,12 +28,14 @@ class LatestPostsWidget extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	public function widget($args, $instance) {
+
         if (isset($instance['title'])) {
 			$title = $instance['title'];
 		}
 		else {
 			$title = __('New title', 'customize_posts');
 		}
+		
 		$amount = isset($instance['amount'])
 			? (int)$instance['amount']
             : 3;

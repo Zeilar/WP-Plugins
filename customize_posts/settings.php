@@ -51,6 +51,20 @@ function cp_related_posts_title() {
     <?php
 }
 
+// Edits amount of related posts
+function cp_related_posts_amount() {
+    ?>
+        <input 
+            type="number" 
+            name="cp_related_posts_amount" 
+            id="cp_related_posts_amount"
+            min="0"
+            max="10"
+            value="<?php echo get_option('cp_related_posts_amount', 3); ?>"
+        >
+    <?php
+}
+
 // Puts related posts section at the end of blog posts
 function cp_append_related_posts() {
     ?>
@@ -82,16 +96,26 @@ function cp_settings_init() {
         'cp_general_options'
     );
 
+    // Edit amount of related posts
+    add_settings_field(
+        'cp_related_posts_amount', 
+        'Amount of related posts', 
+        'cp_related_posts_amount', 
+        'customize_posts', 
+        'cp_general_options'
+    );
+
     // Puts related posts section at the end of blog posts
     add_settings_field(
         'cp_append_related_posts', 
-        __('Add Related Posts automatically to all blog posts?', 'customize_posts'), 
+        __('Add related posts automatically to all blog posts?', 'customize_posts'), 
         'cp_append_related_posts', 
         'customize_posts', 
         'cp_general_options'
     );
 
     register_setting('cp_general_options', 'cp_related_posts_title');
+    register_setting('cp_general_options', 'cp_related_posts_amount');
     register_setting('cp_general_options', 'cp_append_related_posts');
 }
 add_action('admin_init', 'cp_settings_init');

@@ -4,10 +4,11 @@
 function get_related_posts($user_atts = [], $content = null, $tag = '') {
 
     $default_title = get_option('cp_related_posts_title', __('Related Posts', 'customize_posts'));
+    $default_post_amount = get_option('cp_related_posts_amount', __('Amount of related posts', 'customize_posts'));
 
     // Default Attributes (If user makes no input)
     $default_atts = [
-        'posts_per_page' => 3,
+        'posts_per_page' => $default_post_amount,
         'title' => $default_title,
     ];
     
