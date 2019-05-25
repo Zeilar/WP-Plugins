@@ -9,6 +9,7 @@ class StarWarsWidget extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
+
 	public function __construct() {
 		parent::__construct(
 			'wcms18-starwars-widget', // Base ID
@@ -28,6 +29,7 @@ class StarWarsWidget extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	public function widget($args, $instance) {
+		
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
 
@@ -39,13 +41,17 @@ class StarWarsWidget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-        $request = wp_remote_get("https://swapi.co/api/films/");
-        $headers = $request['headers'];
-        $body = json_decode($request['body']);
+		$films = swapi_get_films();
 
-        foreach($body->results as $film) {
-            echo "<li>{$film->title} ($film->release_date)</li>";
-        }
+		if ($films) {
+			foreach ($films as $film) {
+				_e("<strong>Title: </strong>{$film->title}<br>", 'customize_posts');
+				_e("<strong>Release Date: </strong>{$film->release_date}<br><br>", 'customize_posts');
+			}
+		} else {
+			_e('Oops, something went wrong!', 'customize_posts');
+		}
+	
 
 		// close widget
 		echo $after_widget;
