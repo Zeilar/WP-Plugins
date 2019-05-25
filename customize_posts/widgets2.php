@@ -2,6 +2,7 @@
 
 require("class.latestpostswidget.php");
 require("class.starwarswidget.php");
+require("swapi.php");
 
 // Load Latest Posts Widget
 function latestposts_widget_init() {
