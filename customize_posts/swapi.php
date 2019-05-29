@@ -31,13 +31,13 @@ function swapi_get($endpoint, $expiration = 3600) {
 }
 
 function swapi_get_films() {
-    return swapi_get('films', 1);
+    return swapi_get('films', 60*60);
 }
 
 function swapi_get_characters() {
-    return swapi_get('people', 1);
+    return swapi_get('people', 60*60);
 }
 
 function swapi_get_vehicles() {
-    return swapi_get('vehicles', 1);
+    return swapi_get('vehicles', 60*60);
 }

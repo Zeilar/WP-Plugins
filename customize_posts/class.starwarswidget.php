@@ -42,8 +42,8 @@ class StarWarsWidget extends WP_Widget {
 		}
 
 		$films = swapi_get_films();
-		$characters = swapi_get_characters();
-		$vehicles = swapi_get_vehicles();
+		//$characters = swapi_get_characters();
+		//$vehicles = swapi_get_vehicles();
 		
 		if ($films) {
 			foreach ($films as $film) {
@@ -56,21 +56,22 @@ class StarWarsWidget extends WP_Widget {
 
 		if ($characters) {
 			foreach ($characters as $character) {
-				_e("<strong>Characters: </strong>{$character->name},<br>");
-				?>
-					<br>
-				<?php
+				_e("<strong>Characters: </strong>{$character->name}<br>");
 			}
 		} else {
-			_e('Oops, something went wrong!<br>', 'customize_posts');
+			_e('Oops, here was supposed to be characters!<br>', 'customize_posts');
 		}
+
+		?>
+			<br>
+		<?php
 
 		if ($vehicles) {
 			foreach ($vehicles as $vehicle) {
-				_e("<strong>Vehicles: </strong>{$vehicle->name}<br><br>");
+				_e("<strong>Vehicles: </strong>{$vehicle->name}<br>");
 			}
 		} else {
-			_e('Oops, something went wrong!<br>', 'customize_posts');
+			_e('Oops, here was supposed to be vehicles!<br>', 'customize_posts');
 		}
 	
 
