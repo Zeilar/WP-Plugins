@@ -8,55 +8,36 @@ function swapi_get_url($url) {
     return json_decode(wp_remote_retrieve_body($request));
 }
 
-function swapi_get($endpoint) {
+function swapi_get($endpoint, $expiration = 3600) {
     if (!$endpoint) {
         return false;
     }
-    $items = [];
-    $url = "https://swapi.co/api/{$endpoint}/";
-    while ($url) {
-        $data = swapi_get_url($url);
-        if (!$data) {
-            return false;
+    $transient_key = "swapi_get_{$endpoint}";
+    $items = get_transient($transient_key);
+    if (!$items) {    
+        $items = [];
+        $url = "https://swapi.co/api/{$endpoint}";
+        while ($url) {
+            $data = swapi_get_url($url);
+            if (!$data) {
+                return false;
+            }
+            $items = array_merge($items, $data->results);
+            $url = $data->next;
         }
-        $items = array_merge($items, $data->results);
-        $url = $data->next;
+        set_transient($transient_key, $items, $expiration);
     }
     return $items;
 }
 
 function swapi_get_films() {
-    $films = get_transient('swapi_get_films');
-    if ($films) {
-        return $films;
-    } else {
-        $items = swapi_get('films');
-        set_transient('swapi_get_films', $items, 60*30);
-
-        return $items;
-    }
+    return swapi_get('films', 1);
 }
 
 function swapi_get_characters() {
-    $characters = get_transient('swapi_get_characters');
-    if ($characters) {
-        return $characters;
-    } else {
-        $items = swapi_get('people');
-        set_transient('swapi_get_characters', $items, 60*30);
-
-        return $items;
-    }
+    return swapi_get('people', 1);
 }
 
 function swapi_get_vehicles() {
-    $vehicles = get_transient('swapi_get_vehicles');
-    if ($vehicles) {
-        return $vehicles;
-    } else {
-        $items = swapi_get('vehicles');
-        set_transient('swapi_get_vehicles', $items, 60*30);
-
-        return $items;
-    }
+    return swapi_get('vehicles', 1);
 }

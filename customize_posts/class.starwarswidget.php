@@ -41,10 +41,9 @@ class StarWarsWidget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		//$films = swapi_get_films();
-		//$characters = swapi_get_characters();
+		$films = swapi_get_films();
+		$characters = swapi_get_characters();
 		$vehicles = swapi_get_vehicles();
-		echo count($vehicles);
 		
 		if ($films) {
 			foreach ($films as $film) {
