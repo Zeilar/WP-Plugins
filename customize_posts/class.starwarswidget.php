@@ -41,15 +41,37 @@ class StarWarsWidget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		$films = swapi_get_films();
-
+		//$films = swapi_get_films();
+		//$characters = swapi_get_characters();
+		$vehicles = swapi_get_vehicles();
+		echo count($vehicles);
+		
 		if ($films) {
 			foreach ($films as $film) {
 				_e("<strong>Title: </strong>{$film->title}<br>", 'customize_posts');
 				_e("<strong>Release Date: </strong>{$film->release_date}<br><br>", 'customize_posts');
 			}
 		} else {
-			_e('Oops, something went wrong!', 'customize_posts');
+			_e('Oops, something went wrong!<br>', 'customize_posts');
+		}
+
+		if ($characters) {
+			foreach ($characters as $character) {
+				_e("<strong>Characters: </strong>{$character->name},<br>");
+				?>
+					<br>
+				<?php
+			}
+		} else {
+			_e('Oops, something went wrong!<br>', 'customize_posts');
+		}
+
+		if ($vehicles) {
+			foreach ($vehicles as $vehicle) {
+				_e("<strong>Vehicles: </strong>{$vehicle->name}<br><br>");
+			}
+		} else {
+			_e('Oops, something went wrong!<br>', 'customize_posts');
 		}
 	
 
