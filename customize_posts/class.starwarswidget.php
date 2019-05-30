@@ -12,10 +12,10 @@ class StarWarsWidget extends WP_Widget {
 
 	public function __construct() {
 		parent::__construct(
-			'wcms18-starwars-widget', // Base ID
-			'WCMS18 StarWars', // Name
+			'starwars-widget', // Base ID
+			'Star Wars', // Name
 			[
-				'description' => __('A Widget for displaying some StarWars trivia', 'wcms18-starwars-widget'),
+				'description' => __('A Widget for displaying some StarWars trivia', 'customize-posts'),
 			] // Args
 		);
 	}
