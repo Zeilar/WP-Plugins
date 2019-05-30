@@ -18,3 +18,10 @@ require("filters.php");
 require("shortcodes.php");
 require("widgets2.php");
 require("settings.php");
+
+function cp_enqueue_styles() {
+    wp_enqueue_style('customize_posts', plugin_dir_url(__FILE__) . 'assets/css/customize_posts.css');
+
+    wp_enqueue_script('customize_posts', plugin_dir_url(__FILE__) . 'assets/js/customize_posts.js', ['jquery'], false, true);
+}
+add_action('wp_enqueue_scripts', 'cp_enqueue_styles');

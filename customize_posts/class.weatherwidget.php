@@ -15,7 +15,7 @@ class WeatherWidget extends WP_Widget {
 			'weather-widget', // Base ID
 			'Weather', // Name
 			[
-				'description' => __('A Widget for displaying the current weather for a loction', 'customize-posts'),
+				'description' => __('A Widget for displaying the current weather for a loction', 'customize_posts'),
 			] // Args
 		);
 	}
@@ -48,17 +48,29 @@ class WeatherWidget extends WP_Widget {
         // content
         $weather = owm_get_current_weather($city, $country);
 
-        _e("Weather in <strong>{$city}</strong>, <strong>{$country}</strong>", 'customize-posts');
-        echo "<br><br>";
-        _e("<strong>Temperature: </strong>{$weather['temperature']}C", 'customize-posts');
-        echo "<br>";
-        _e("<strong>Humidity: </strong>{$weather['humidity']}%", 'customize-posts');
-        echo "<br>";
-        foreach ($weather['conditions'] as $condition) {
-            _e('<strong>Weather: </strong>' . ucfirst($condition->description), 'customize-posts');
-            echo "<br>";
-            echo '<img src="http://openweathermap.org/img/w/' . $condition->icon . '.png' . '" title="' . $condition->description . '" alt="' . $condition->main . '">';
-        }
+        foreach ($weather['conditions'] as $condition) :
+            ?>
+                <div class="weather-widget">
+                    <?php _e("Weather in <strong>{$city}</strong>, <strong>{$country}</strong>", 'customize_posts'); ?>
+                    <br>
+                    <br>
+                    <?php _e('<strong>Weather: </strong>' . ucfirst($condition->description), 'customize_posts'); ?>
+                    <br>
+                    <?php _e("<strong>Temperature: </strong>{$weather['temperature']}C", 'customize_posts'); ?>
+                    <br>
+                    <?php _e("<strong>Humidity: </strong>{$weather['humidity']}%", 'customize_posts'); ?>
+                    <br>
+                    
+                    <div class="weather-widget weather-widget-conditions">
+                        <img
+                            src="<?php echo 'http://openweathermap.org/img/w/' . $condition->icon . '.png' ?>"
+                            title="<?php _e($condition->description, 'customize_posts'); ?>"
+                            alt="<?php _e($condition->main, 'customize_posts'); ?>"
+                        > <!-- img -->
+                    </div> <!-- weather-widget-conditions -->
+                </div> <!-- weeather-widget -->
+            <?php
+        endforeach;
 
 		// close widget
 		echo $after_widget;
@@ -94,7 +106,7 @@ class WeatherWidget extends WP_Widget {
 			<label
 				for="<?php echo $this->get_field_name('title'); ?>"
 			>
-				<?php _e('Title:', 'customize-posts'); ?>
+				<?php _e('Title:', 'customize_posts'); ?>
 			</label>
 
 			<input
@@ -112,7 +124,7 @@ class WeatherWidget extends WP_Widget {
 			<label
 				for="<?php echo $this->get_field_name('city'); ?>"
 			>
-				<?php _e('City:', 'customize-posts'); ?>
+				<?php _e('City:', 'customize_posts'); ?>
 			</label>
 
 			<input
@@ -130,7 +142,7 @@ class WeatherWidget extends WP_Widget {
 			<label
 				for="<?php echo $this->get_field_name('country'); ?>"
 			>
-				<?php _e('Country:', 'customize-posts'); ?>
+				<?php _e('Country:', 'customize_posts'); ?>
 			</label>
 
 			<input
@@ -142,7 +154,6 @@ class WeatherWidget extends WP_Widget {
 			/>
 		</p>
         <!-- country -->
-
 
 	<?php
 	}

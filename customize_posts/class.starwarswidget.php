@@ -15,7 +15,7 @@ class StarWarsWidget extends WP_Widget {
 			'starwars-widget', // Base ID
 			'Star Wars', // Name
 			[
-				'description' => __('A Widget for displaying some StarWars trivia', 'customize-posts'),
+				'description' => __('A Widget for displaying some StarWars trivia', 'customize_posts'),
 			] // Args
 		);
 	}
