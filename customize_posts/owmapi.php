@@ -12,18 +12,9 @@ function owm_get_current_weather($city, $country, $measurement = 'metric') {
     $current_weather = [];
     $current_weather['temperature'] = $request->main->temp;
     $current_weather['humidity'] = $request->main->humidity;
-
-    $weathers = [];
-    
-    foreach ($request->weather as $weather) {
-        array_push($weathers, $weather->description);
-
-        $weather_icon_id = $weather->icon;
-        $weather_id = $weather->id;
-    }
-
-    $weathers = array_map('ucfirst', $weathers);
-    $current_weather['conditions'] = implode(', ', $weathers);
+    $current_weather['city'] = $request->name;
+    $current_weather['country'] = $request->sys->country;
+    $current_weather['conditions'] = $request->weather;
 
     return $current_weather;
 }

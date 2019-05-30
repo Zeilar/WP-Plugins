@@ -54,7 +54,11 @@ class WeatherWidget extends WP_Widget {
         echo "<br>";
         _e("<strong>Humidity: </strong>{$weather['humidity']}%", 'customize-posts');
         echo "<br>";
-        _e("<strong>Weather: </strong>{$weather['conditions']}", 'customize-posts');
+        foreach ($weather['conditions'] as $condition) {
+            _e('<strong>Weather: </strong>' . ucfirst($condition->description), 'customize-posts');
+            echo "<br>";
+            echo '<img src="http://openweathermap.org/img/w/' . $condition->icon . '.png' . '" title="' . $condition->description . '" alt="' . $condition->main . '">';
+        }
 
 		// close widget
 		echo $after_widget;
