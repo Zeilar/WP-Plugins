@@ -2,7 +2,7 @@
 
 function swapi_get_url($url) {
     $request = wp_remote_get($url);
-    if (is_wp_error($request)) {
+    if (is_wp_error($request) || wp_remote_retrieve_response_code($request) !== 200) {
         return false;
     }
     return json_decode(wp_remote_retrieve_body($request));
