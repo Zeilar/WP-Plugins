@@ -47,6 +47,7 @@ class WeatherWidget extends WP_Widget {
 
         // content
         $weather = owm_get_current_weather($city, $country);
+        $temperature = (int)$weather['temperature'];
 
         foreach ($weather['conditions'] as $condition) :
             ?>
@@ -56,7 +57,7 @@ class WeatherWidget extends WP_Widget {
                     <br>
                     <?php _e('<strong>Weather: </strong>' . ucfirst($condition->description), 'customize_posts'); ?>
                     <br>
-                    <?php _e("<strong>Temperature: </strong>{$weather['temperature']}C", 'customize_posts'); ?>
+                    <?php _e("<strong>Temperature: </strong>{$temperature}C", 'customize_posts'); ?>
                     <br>
                     <?php _e("<strong>Humidity: </strong>{$weather['humidity']}%", 'customize_posts'); ?>
                     <br>
