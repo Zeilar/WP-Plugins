@@ -1,8 +1,11 @@
 (function($){
 
     $(document).ready(function(){
-        $.getJSON(
-            'https://swapi.co/api/vehicles/6',
+        $.post(
+            cp_ajaxobj.ajax_url,
+            {
+                action: 'get_current_weather'
+            },
             null,
             function(response) {
                 console.log("Response:", response);

@@ -23,5 +23,16 @@ function cp_enqueue_styles() {
     wp_enqueue_style('customize_posts', plugin_dir_url(__FILE__) . 'assets/css/customize_posts.css');
 
     wp_enqueue_script('customize_posts', plugin_dir_url(__FILE__) . 'assets/js/customize_posts.js', ['jquery'], false, true);
+
+    wp_localize_script('customize_posts', 'cp_ajaxobj', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
 }
 add_action('wp_enqueue_scripts', 'cp_enqueue_styles');
+
+function cp_ajax_get_current_weather() {
+    $current_weather = owm_get_current_weather('Kristianstad', 'SE');
+    wp_send_json($current_weather);
+}
+add_action('wp_ajax_get_current_weather', 'cp_ajax_get_current_weather');
+add_action('wp_ajax_nopriv_get_current_weather', 'cp_ajax_get_current_weather');
