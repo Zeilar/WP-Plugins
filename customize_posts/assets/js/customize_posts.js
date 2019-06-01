@@ -7,12 +7,12 @@
 })(jQuery);
 
 function cp_get_current_weather(widget_id, widget_city, widget_country) {
-
+console.log(widget_id, widget_city, widget_country);
     var url = cp_ajaxobj.ajax_url,
         payload = {
             action: 'get_current_weather',
-            city: 'Kristianstad',
-            country: 'SE'
+            city: widget_city,
+            country: widget_country
         };
 
         jQuery.post(
