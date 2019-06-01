@@ -46,47 +46,21 @@ class WeatherWidget extends WP_Widget {
 		}
 
         // content
-        $weather = owm_get_current_weather($city, $country);
-		$temperature = (int)$weather['temperature'];
-		
 		?>
 			<div class="current-weather">
-				<!-- js content -->
+
 			</div>
+
 			<script>
 				jQuery(document).ready(function(){
 					cp_get_current_weather(
-						'<?php echo $widget_id; ?>',
-						'<?php echo $city; ?>',
-						'<?php echo $country; ?>'
-					);
+							'<?php echo $widget_id; ?>', 
+							'<?php echo $city; ?>', 
+							'<?php echo $country; ?>',
+						);
 				});
 			</script>
 		<?php
-
-        /*foreach ($weather['conditions'] as $condition) :
-            ?>
-                <div class="weather-widget">
-                    <?php _e("Weather in <strong>{$city}</strong>, <strong>{$country}</strong>", 'customize_posts'); ?>
-                    <br>
-                    <br>
-                    <?php _e('<strong>Weather: </strong>' . ucfirst($condition->description), 'customize_posts'); ?>
-                    <br>
-                    <?php _e("<strong>Temperature: </strong>{$temperature}C", 'customize_posts'); ?>
-                    <br>
-                    <?php _e("<strong>Humidity: </strong>{$weather['humidity']}%", 'customize_posts'); ?>
-                    <br>
-                    
-                    <div class="weather-widget weather-widget-conditions">
-                        <img
-                            src="<?php echo 'http://openweathermap.org/img/w/' . $condition->icon . '.png' ?>"
-                            title="<?php _e($condition->description, 'customize_posts'); ?>"
-                            alt="<?php _e($condition->main, 'customize_posts'); ?>"
-                        > <!-- img -->
-                    </div> <!-- weather-widget-conditions -->
-                </div> <!-- weeather-widget -->
-            <?php
-        endforeach;*/
 
 		// close widget
 		echo $after_widget;
