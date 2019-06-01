@@ -47,9 +47,24 @@ class WeatherWidget extends WP_Widget {
 
         // content
         $weather = owm_get_current_weather($city, $country);
-        $temperature = (int)$weather['temperature'];
+		$temperature = (int)$weather['temperature'];
+		
+		?>
+			<div class="current-weather">
+				<!-- js content -->
+			</div>
+			<script>
+				jQuery(document).ready(function(){
+					cp_get_current_weather(
+						'<?php echo $widget_id; ?>',
+						'<?php echo $city; ?>',
+						'<?php echo $country; ?>'
+					);
+				});
+			</script>
+		<?php
 
-        foreach ($weather['conditions'] as $condition) :
+        /*foreach ($weather['conditions'] as $condition) :
             ?>
                 <div class="weather-widget">
                     <?php _e("Weather in <strong>{$city}</strong>, <strong>{$country}</strong>", 'customize_posts'); ?>
@@ -71,7 +86,7 @@ class WeatherWidget extends WP_Widget {
                     </div> <!-- weather-widget-conditions -->
                 </div> <!-- weeather-widget -->
             <?php
-        endforeach;
+        endforeach;*/
 
 		// close widget
 		echo $after_widget;

@@ -31,7 +31,7 @@ function cp_enqueue_styles() {
 add_action('wp_enqueue_scripts', 'cp_enqueue_styles');
 
 function cp_ajax_get_current_weather() {
-    $current_weather = owm_get_current_weather('Kristianstad', 'SE');
+    $current_weather = owm_get_current_weather($_POST['city'], $_POST[]);
     wp_send_json($current_weather);
 }
 add_action('wp_ajax_get_current_weather', 'cp_ajax_get_current_weather');
