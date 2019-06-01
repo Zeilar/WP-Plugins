@@ -28,6 +28,7 @@ class StarWarsWidget extends WP_Widget {
 	 * @param array $args     Widget arguments.
 	 * @param array $instance Saved values from database.
 	 */
+
 	public function widget($args, $instance) {
 		
 		extract($args);
@@ -86,6 +87,7 @@ class StarWarsWidget extends WP_Widget {
 	 *
 	 * @param array $instance Previously saved values from database.
 	 */
+	
 	public function form($instance) {
 
 		if (isset($instance['title'])) {

@@ -2,13 +2,28 @@
 
     $(document).ready(function(){
 
+        let widgets = $('.widget_oneliner-widget');
+        
+        for (let i = 0; i < widgets.length; i++) {
+            let widget = widgets[i];
+
+            $.post(
+                cp_ol_settings.ajax_url,
+                {
+                    action: 'get_oneliner'
+                },
+                function(oneliner){
+                    $(widget).find('.content').html(oneliner);
+                }
+            );
+        }
     });
 
 })(jQuery);
 
 function cp_get_current_weather(widget_id, widget_city, widget_country) {
     
-    var url = cp_ajaxobj.ajax_url,
+    let url = cp_ajaxobj.ajax_url,
         payload = {
             action: 'get_current_weather',
             city: widget_city,

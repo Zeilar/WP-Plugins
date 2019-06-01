@@ -1,0 +1,9 @@
+/**
+ * Specialized styles for the plugin
+ */
+
+.widget_oneliner-widget .content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-style: italic;
+}
