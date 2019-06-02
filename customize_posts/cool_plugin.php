@@ -4,7 +4,7 @@
  * Plugin Name: Cool Plugin
  * Plugin URI:
  * Description: Does a lot of cool things!
- * Version:     0.1
+ * Version:     0.9
  * Author:      Philip Angelin
  * Author URI:
  * License:     WTFPL
