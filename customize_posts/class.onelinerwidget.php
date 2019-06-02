@@ -15,7 +15,7 @@ class OneLinerWidget extends WP_Widget {
 			'oneliner-widget', // Base ID
 			'OneLiner', // Name
 			[
-				'description' => __('A widget that displays funny one liners', 'customize_posts'),
+				'description' => __('A widget that displays funny one liners', 'cool_plugin'),
 			] // Args
 		);
 	}

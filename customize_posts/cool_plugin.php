@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Plugin Name: Customize Posts
+ * Plugin Name: Cool Plugin
  * Plugin URI:
- * Description: Customize how and which posts are displayed.
+ * Description: Does a lot of cool things!
  * Version:     0.1
  * Author:      Philip Angelin
  * Author URI:
  * License:     WTFPL
  * License URI: www.wtfpl.net
- * Text Domain: customize_posts
+ * Text Domain: cool_plugin
  * Domain Path: /languages
  */
 
@@ -20,13 +20,13 @@ require("widgets2.php");
 require("settings.php");
 
 function cp_enqueue_styles() {
-    wp_enqueue_style('customize_posts', plugin_dir_url(__FILE__) . 'assets/css/customize_posts.css');
-    wp_enqueue_script('customize_posts', plugin_dir_url(__FILE__) . 'assets/js/customize_posts.js', ['jquery'], false, true);
+    wp_enqueue_style('cool_plugin', plugin_dir_url(__FILE__) . 'assets/css/cool_plugin.css');
+    wp_enqueue_script('cool_plugin', plugin_dir_url(__FILE__) . 'assets/js/cool_plugin.js', ['jquery'], false, true);
 
-    wp_localize_script('customize_posts', 'cp_ajaxobj', [
+    wp_localize_script('cool_plugin', 'cp_ajaxobj', [
         'ajax_url' => admin_url('admin-ajax.php'),
     ]);
-    wp_localize_script('customize_posts', 'cp_ol_settings', [
+    wp_localize_script('cool_plugin', 'cp_ol_settings', [
         'ajax_url' => admin_url('admin-ajax.php'),
     ]);
 }

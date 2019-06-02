@@ -14,7 +14,7 @@ class LatestPostsWidget extends WP_Widget {
 			'latest_posts_widget', // Base ID
 			'Latest Posts Widget', // Name
 			[
-				'description' => __('Showing latest posts', 'customize_posts'),
+				'description' => __('Showing latest posts', 'cool_plugin'),
 			] // Args
 		);
 	}
@@ -33,7 +33,7 @@ class LatestPostsWidget extends WP_Widget {
 			$title = $instance['title'];
 		}
 		else {
-			$title = __('New title', 'customize_posts');
+			$title = __('New title', 'cool_plugin');
 		}
 		
 		$amount = isset($instance['amount'])
@@ -120,7 +120,7 @@ class LatestPostsWidget extends WP_Widget {
 			$title = $instance['title'];
 		}
 		else {
-			$title = __('New title', 'customize_posts');
+			$title = __('New title', 'cool_plugin');
         }
         $amount = isset($instance['amount'])
 			? (int)$instance['amount']

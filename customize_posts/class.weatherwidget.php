@@ -15,7 +15,7 @@ class WeatherWidget extends WP_Widget {
 			'weather-widget', // Base ID
 			'Weather', // Name
 			[
-				'description' => __('A Widget for displaying the current weather for a loction', 'customize_posts'),
+				'description' => __('A Widget for displaying the current weather for a loction', 'cool_plugin'),
 			] // Args
 		);
 	}
@@ -77,12 +77,12 @@ class WeatherWidget extends WP_Widget {
 		if (isset($instance['title'])) {
 			$title = $instance['title'];
 		} else {
-			$title = __('Current Weather', 'customize_posts');
+			$title = __('Current Weather', 'cool_plugin');
         }
         
         $city = isset($instance['city'])
             ? $instance['city']
-            : 'Lund';
+            : 'Kristianstad';
 
         $country = isset($instance['country'])
             ? $instance['country']
@@ -96,7 +96,7 @@ class WeatherWidget extends WP_Widget {
 			<label
 				for="<?php echo $this->get_field_name('title'); ?>"
 			>
-				<?php _e('Title:', 'customize_posts'); ?>
+				<?php _e('Title:', 'cool_plugin'); ?>
 			</label>
 
 			<input
@@ -114,7 +114,7 @@ class WeatherWidget extends WP_Widget {
 			<label
 				for="<?php echo $this->get_field_name('city'); ?>"
 			>
-				<?php _e('City:', 'customize_posts'); ?>
+				<?php _e('City:', 'cool_plugin'); ?>
 			</label>
 
 			<input
@@ -132,7 +132,7 @@ class WeatherWidget extends WP_Widget {
 			<label
 				for="<?php echo $this->get_field_name('country'); ?>"
 			>
-				<?php _e('Country:', 'customize_posts'); ?>
+				<?php _e('Country:', 'cool_plugin'); ?>
 			</label>
 
 			<input

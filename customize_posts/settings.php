@@ -8,7 +8,7 @@ function cp_add_settings_page_to_menu() {
         'Customize Posts Settings', // Settings page title
         'Customize Posts', // Menu title
         'manage_options', // User capability requirement
-        'customize_posts', // Slug for settings page URL
+        'cool_plugin', // Slug for settings page URL
         'cp_settings_page' // Callback to render function
     );
 }
@@ -24,7 +24,7 @@ function cp_settings_page() {
             <form method="post" action="options.php">
                 <?php
                     settings_fields("cp_general_options");
-                    do_settings_sections("customize_posts");
+                    do_settings_sections("cool_plugin");
                     submit_button();
                 ?>
             </form> <!-- options form -->
@@ -46,7 +46,7 @@ function cp_related_posts_title() {
             type="text" 
             name="cp_related_posts_title" 
             id ="cp_related_posts_title"
-            value="<?php echo get_option('cp_related_posts_title', __('Related Posts', 'customize_posts')); ?>"
+            value="<?php echo get_option('cp_related_posts_title', __('Related Posts', 'cool_plugin')); ?>"
         >
     <?php
 }
@@ -82,9 +82,9 @@ function cp_settings_init() {
 
     add_settings_section(
         'cp_general_options', 
-        __('General Options', 'customize_posts'), 
+        __('General Options', 'cool_plugin'), 
         'cp_general_options_section', 
-        'customize_posts'
+        'cool_plugin'
     );
 
     // Edit blog posts title
@@ -92,7 +92,7 @@ function cp_settings_init() {
         'cp_related_posts_title', 
         'Edit post title', 
         'cp_related_posts_title', 
-        'customize_posts', 
+        'cool_plugin', 
         'cp_general_options'
     );
 
@@ -101,16 +101,16 @@ function cp_settings_init() {
         'cp_related_posts_amount', 
         'Amount of related posts', 
         'cp_related_posts_amount', 
-        'customize_posts', 
+        'cool_plugin', 
         'cp_general_options'
     );
 
     // Puts related posts section at the end of blog posts
     add_settings_field(
         'cp_append_related_posts', 
-        __('Add related posts automatically to all blog posts?', 'customize_posts'), 
+        __('Add related posts automatically to all blog posts?', 'cool_plugin'), 
         'cp_append_related_posts', 
-        'customize_posts', 
+        'cool_plugin', 
         'cp_general_options'
     );
 

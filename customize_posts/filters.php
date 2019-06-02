@@ -1,7 +1,7 @@
 <?php
 
 // Filters The $content
-function customize_posts_the_content($content) {
+function cool_plugin_the_content($content) {
     if(
         is_single() && 
         is_main_query() && 
@@ -15,4 +15,4 @@ function customize_posts_the_content($content) {
     
     return $content;
 }
-add_filter('the_content', 'customize_posts_the_content');
+add_filter('the_content', 'cool_plugin_the_content');

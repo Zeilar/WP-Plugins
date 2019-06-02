@@ -15,7 +15,7 @@ class StarWarsWidget extends WP_Widget {
 			'starwars-widget', // Base ID
 			'Star Wars', // Name
 			[
-				'description' => __('A Widget for displaying some StarWars trivia', 'customize_posts'),
+				'description' => __('A Widget for displaying some StarWars trivia', 'cool_plugin'),
 			] // Args
 		);
 	}
@@ -48,11 +48,11 @@ class StarWarsWidget extends WP_Widget {
 		
 		if ($films) {
 			foreach ($films as $film) {
-				_e("<strong>Title: </strong>{$film->title}<br>", 'customize_posts');
-				_e("<strong>Release Date: </strong>{$film->release_date}<br><br>", 'customize_posts');
+				_e("<strong>Title: </strong>{$film->title}<br>", 'cool_plugin');
+				_e("<strong>Release Date: </strong>{$film->release_date}<br><br>", 'cool_plugin');
 			}
 		} else {
-			_e('Oops, something went wrong!<br>', 'customize_posts');
+			_e('Oops, something went wrong!<br>', 'cool_plugin');
 		}
 
 		if ($characters) {
@@ -60,7 +60,7 @@ class StarWarsWidget extends WP_Widget {
 				_e("<strong>Characters: </strong>{$character->name}<br>");
 			}
 		} else {
-			_e('Oops, here was supposed to be characters!<br>', 'customize_posts');
+			_e('Oops, here was supposed to be characters!<br>', 'cool_plugin');
 		}
 
 		?>
@@ -72,7 +72,7 @@ class StarWarsWidget extends WP_Widget {
 				_e("<strong>Vehicles: </strong>{$vehicle->name}<br>");
 			}
 		} else {
-			_e('Oops, here was supposed to be vehicles!<br>', 'customize_posts');
+			_e('Oops, here was supposed to be vehicles!<br>', 'cool_plugin');
 		}
 	
 

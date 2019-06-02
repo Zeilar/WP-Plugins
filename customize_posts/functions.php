@@ -3,8 +3,8 @@
 // Gets Posts Related To The Current One
 function get_related_posts($user_atts = [], $content = null, $tag = '') {
 
-    $default_title = get_option('cp_related_posts_title', __('Related Posts', 'customize_posts'));
-    $default_post_amount = get_option('cp_related_posts_amount', __('Amount of related posts', 'customize_posts'));
+    $default_title = get_option('cp_related_posts_title', __('Related Posts', 'cool_plugin'));
+    $default_post_amount = get_option('cp_related_posts_amount', __('Amount of related posts', 'cool_plugin'));
 
     // Default Attributes (If user makes no input)
     $default_atts = [
@@ -46,7 +46,7 @@ function get_related_posts($user_atts = [], $content = null, $tag = '') {
         $output .= "</ul>";
 
     } else {
-        $output .= __('No posts were found :(', 'customize_posts');
+        $output .= __('No posts were found :(', 'cool_plugin');
     }
 
     return $output;
