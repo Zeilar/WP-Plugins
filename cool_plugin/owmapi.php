@@ -6,7 +6,10 @@ function owm_get_current_weather($city, $country, $measurement = 'metric') {
     {$country}&units={$measurement}&appid=5ae275d1a0023fc435486dc31a45cd67");
 
     if (is_wp_error($request) || wp_remote_retrieve_response_code($request) !== 200) {
-        return false;
+        return [
+            'success' => false,
+            'error' => wp_remote_retrieve_response_code($request)
+        ];
     }
     $request = json_decode(wp_remote_retrieve_body($request));
 
@@ -17,5 +20,8 @@ function owm_get_current_weather($city, $country, $measurement = 'metric') {
     $current_weather['country'] = $request->sys->country;
     $current_weather['conditions'] = $request->weather;
 
-    return $current_weather;
+    return [
+        'success' => true,
+        'data' => $current_weather
+    ];
 }

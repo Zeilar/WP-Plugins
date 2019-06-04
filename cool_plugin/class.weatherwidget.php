@@ -47,19 +47,9 @@ class WeatherWidget extends WP_Widget {
 
         // content
 		?>
-			<div class="current-weather">
-
+			<div class="current-weather" data-city="<?php echo $city; ?>" data-country="<?php echo $country; ?>">
+				<em><small>Loading...</small></em>
 			</div>
-
-			<script>
-				jQuery(document).ready(function(){
-					cp_get_current_weather(
-							'<?php echo $widget_id; ?>', 
-							'<?php echo $city; ?>', 
-							'<?php echo $country; ?>',
-						);
-				});
-			</script>
 		<?php
 
 		// close widget
