@@ -86,10 +86,9 @@
             .done(function(response) {
 
                 let 
-                    html             = '',
-                    films            = response,
-                    content          = $(widget).find('.content');
-
+                    html    = '',
+                    films   = response,
+                    content = $(widget).find('.content');
 
                 films.forEach(function(film) {
                     html += '<strong>Title: </strong>' + film.title;
@@ -98,7 +97,6 @@
                     html += '<br><br>';
                 });
                 
-
                 $(content).html(html);
             })
             .fail(function(error) {
