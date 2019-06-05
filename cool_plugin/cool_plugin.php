@@ -48,7 +48,7 @@ function cp_ajax_get_oneliner() {
     global $oneliners;
 
     $oneliner_index = array_rand($oneliners);
-    $oneliner = $oneliners[$oneliner_index];
+    $oneliner       = $oneliners[$oneliner_index];
 
     echo $oneliner;
 

@@ -1,5 +1,6 @@
 <?php
 
+// Load all the required widget files
 require("class.latestpostswidget.php");
 require("class.starwarswidget.php");
 require("class.weatherwidget.php");
