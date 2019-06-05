@@ -1,13 +1,13 @@
 <?php
 
 // Load all the required widget files
-require("class.latestpostswidget.php");
-require("class.starwarswidget.php");
-require("class.weatherwidget.php");
-require("class.onelinerwidget.php");
-require("swapi.php");
-require("owmapi.php");
-require("oneliners.php");
+require("widgets/class.latestpostswidget.php");
+require("widgets/class.starwarswidget.php");
+require("widgets/class.weatherwidget.php");
+require("widgets/class.onelinerwidget.php");
+require("widgets/swapi.php");
+require("widgets/owmapi.php");
+require("widgets/oneliners.php");
 
 // Load Latest Posts Widget
 function latestposts_widget_init() {

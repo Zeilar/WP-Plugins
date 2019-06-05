@@ -1,6 +1,6 @@
 (function($){
 
-    $(document).ready(function(){
+    $(document).ready(function() {
 
         let widgets = $('.widget_oneliner-widget');
         
@@ -9,11 +9,11 @@
             let widget = widgets[i];
 
             $.post(
-                cp_ol_settings.ajax_url,
+                cp_ajax_obj.ajax_url,
                 {
                     action: 'get_oneliner'
                 },
-                function(oneliner){
+                function(oneliner) {
                     $(widget).find('.content').html(oneliner);
                 }
             );
@@ -27,12 +27,12 @@
                 widget_country  = $(current_weather).data('country');
 
             $.post(
-                cp_ajaxobj.ajax_url,
+                cp_ajax_obj.ajax_url,
                 {
                     action:  'get_current_weather',
                     city:    widget_city,
                     country: widget_country
-                },
+                }
             )
             .done(function(response) {
 
@@ -44,7 +44,7 @@
                     
                     html += '<div class="conditions">';
 
-                    current_weather.conditions.forEach(function(condition){
+                    current_weather.conditions.forEach(function(condition) {
                         html += '<img src="http://openweathermap.org/img/w/' + condition.icon + '.png" alt="' + condition.main +
                         '" title="' + condition.description + '">';
                     });
@@ -71,10 +71,48 @@
                 }
 
                 $(current_weather).html(errorOutput);
-
-            }); // .fail callback
+            });
 
         }); // widget_weather-widget.forEach - end of weather widget
+
+        $('.widget_starwars-widget').each(function(i, widget) {
+
+            $.post(
+                cp_ajax_obj.ajax_url,
+                {
+                    action: 'get_starwars_films'
+                }
+            )
+            .done(function(response) {
+
+                let 
+                    html             = '',
+                    films            = response,
+                    content          = $(widget).find('.content');
+
+
+                films.forEach(function(film) {
+                    html += '<strong>Title: </strong>' + film.title;
+                    html += '<br>';
+                    html += '<strong>Release Date: </strong>' + film.release_date;
+                    html += '<br><br>';
+                });
+                
+
+                $(content).html(html);
+            })
+            .fail(function(error) {
+
+                let errorOutput = "Something went wrong!";
+
+                if (error.status == 404) {
+                    errorOutput = "Data not found.";
+                }
+
+                $(content).html(errorOutput);
+            });
+
+        }); // widget_starwars-widget.each - end of Star Wars widget
 
     }); // document.ready
 

@@ -7,3 +7,7 @@
     padding-right: 1rem;
     font-style: italic;
 }
+
+.content .loading {
+    font-style: italic;
+}

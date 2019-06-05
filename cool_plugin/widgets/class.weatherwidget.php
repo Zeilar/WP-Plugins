@@ -48,7 +48,7 @@ class WeatherWidget extends WP_Widget {
         // content
 		?>
 			<div class="current-weather" data-city="<?php echo $city; ?>" data-country="<?php echo $country; ?>">
-				<em><small>Loading...</small></em>
+				<span class="loading"><?php _e('Loading...', 'cool_plugin'); ?></span>
 			</div>
 		<?php
 

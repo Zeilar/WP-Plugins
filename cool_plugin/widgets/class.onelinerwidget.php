@@ -39,14 +39,8 @@ class OneLinerWidget extends WP_Widget {
         // content
 		?>
 			<div class="content">
-                Loading...
+				<span class="loading"><?php _e('Loading...', 'cool_plugin'); ?></span>
 			</div>
-
-			<script>
-				jQuery(document).ready(function(){
-					//var oneliner = cp_get_oneliner();
-				});
-			</script>
 		<?php
 
 		// close widget
