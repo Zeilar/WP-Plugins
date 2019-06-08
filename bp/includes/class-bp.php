@@ -79,6 +79,8 @@ class Bp {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		// widgets
+		$this->register_widget('WeatherWidget');
 	}
 
 	/**
@@ -104,6 +106,11 @@ class Bp {
 		 * core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-loader.php';
+
+		/**
+		 * The class that controls the weather widget.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-weather-widget.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
@@ -182,6 +189,19 @@ class Bp {
 	 */
 	public function run() {
 		$this->loader->run();
+	}
+
+	/**
+	 * Registers widgets.
+	 * 
+	 * Params: (string $widget) - class name of the widget file
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_widget(string $widget) {
+		add_action('widgets_init', function() use ($widget){
+			register_widget($widget);
+		});
 	}
 
 	/**
