@@ -81,6 +81,12 @@ class Bp {
 
 		// widgets
 		$this->register_widget('WeatherWidget');
+		$this->register_widget('DogWidget');
+
+		// ajax
+		$this->register_ajax_action('bp_random_dog__get');
+		//$this->register_ajax_action('ajax_bp_get_current_weather');
+		//$this->ajax_bp_get_current_weather();
 	}
 
 	/**
@@ -113,6 +119,11 @@ class Bp {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-weather-widget.php';
 
 		/**
+		 * The class that controls the dog widget.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-dog-widget.php';
+
+		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
@@ -130,7 +141,6 @@ class Bp {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-bp-public.php';
 
 		$this->loader = new Bp_Loader();
-
 	}
 
 	/**
@@ -147,7 +157,6 @@ class Bp {
 		$plugin_i18n = new Bp_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -163,7 +172,6 @@ class Bp {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -179,7 +187,6 @@ class Bp {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -202,6 +209,49 @@ class Bp {
 		add_action('widgets_init', function() use ($widget){
 			register_widget($widget);
 		});
+	}
+
+	/**
+	 * Registers Ajax actions.
+	 * 
+	 * Params:
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_ajax_action($ajax_action) {
+		add_action('wp_ajax_' . $ajax_action, [$this, 'ajax_' . $ajax_action]);
+		add_action('wp_ajax_nopriv_' . $ajax_action, [$this, 'ajax_' . $ajax_action]);
+	}
+
+	/*public function ajax_bp_get_current_weather() {
+		echo "hidfgdf";
+	}*/
+
+	public function ajax_bp_random_dog__get() {
+		$response = wp_remote_get(BP_RANDOM_DOG_URL);
+		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) != 200) {
+			wp_send_json_error([
+				'error_code' => wp_remote_retrieve_response_code($response),
+				'error_msg' => wp_remote_retrieve_response_message($response)
+			]);
+		}
+		$body = json_decode(wp_remote_retrieve_body($response));
+
+		$file_extension = strtolower(
+			pathinfo(
+				parse_url(
+					$body->url,
+					PHP_URL_PATH
+				), 
+				PATHINFO_EXTENSION
+			)
+		);
+		$video_extensions = ['mp4', 'avi', 'ogv'];
+
+		wp_send_json_success([
+			'type' => in_array($file_extension, $video_extensions) ? 'video' : 'image',
+			'src' => $body->url
+		]);
 	}
 
 	/**

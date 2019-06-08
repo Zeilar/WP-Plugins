@@ -38,6 +38,12 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'BP_VERSION', '1.0.0' );
 
 /**
+ * Fetches random dogs from API with this URL.
+ * Rename this for your plugin and update it as you release new versions.
+ */
+define('BP_RANDOM_DOG_URL', 'https://random.dog/woof.json');
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-bp-activator.php
  */
