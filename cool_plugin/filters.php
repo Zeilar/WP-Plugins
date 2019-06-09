@@ -1,8 +1,8 @@
 <?php
 
-// Filters The $content
-function cool_plugin_the_content($content) {
-    if(
+// filters the $content
+add_filter('the_content', function($content){
+    if (
         is_single() && 
         is_main_query() && 
         in_the_loop() && 
@@ -14,5 +14,4 @@ function cool_plugin_the_content($content) {
     }
     
     return $content;
-}
-add_filter('the_content', 'cool_plugin_the_content');
+});

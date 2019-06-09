@@ -294,5 +294,4 @@ class Bp {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

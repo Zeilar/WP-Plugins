@@ -44,7 +44,7 @@ class LatestPostsWidget extends WP_Widget {
 			? $instance['author']
             : 3;
 
-        if(is_single()) {
+        if (is_single()) {
 
 		    echo $before_widget;
 
@@ -66,7 +66,6 @@ class LatestPostsWidget extends WP_Widget {
 		
         if ($posts->have_posts()) {
             
-            //$today = new DateTime($today);
             $output .= "<ul>";
 
             while ($posts->have_posts()) {
@@ -77,21 +76,9 @@ class LatestPostsWidget extends WP_Widget {
 
                 if ($author) {
                     $output .=  ' by <a href="' . get_the_author_link() . '">' . get_the_author() . '</a>';
-                }
-
-                $output .= ' in ' . get_the_category_list(', ') . "<br>";
-				$post_date = new DateTime(get_the_date());
+				}
 				
-				/* 
-				Get absolute time difference
-
-				$age = date_diff($today, $post_date);
-                $years = $age->y . ' years ';
-                $months = $age->m . ' months ';
-                $days = $age->d . ' days ';
-				$age = $years . $months . $days;
-				*/
-
+                $output .= ' in ' . get_the_category_list(', ') . "<br>";
                 $output .= 'Posted ' . human_time_diff(get_the_time('U')) . ' ago'; 
                 $output .= "</li>";
             }
@@ -101,7 +88,6 @@ class LatestPostsWidget extends WP_Widget {
         } else {
             $output .= "No posts were found :(";
         }
-
 			echo $output;
 			
 	} // function widget

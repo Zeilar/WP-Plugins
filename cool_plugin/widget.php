@@ -9,26 +9,17 @@ require("widgets/swapi.php");
 require("widgets/owmapi.php");
 require("widgets/oneliners.php");
 
-// Load Latest Posts Widget
-function latestposts_widget_init() {
-    register_widget('LatestPostsWidget');
-}
-add_action('widgets_init', 'latestposts_widget_init');
+// Register widgets
+cp_register_widget('LatestPostsWidget');
+cp_register_widget('StarWarsWidget');
+cp_register_widget('WeatherWidget');
+cp_register_widget('OneLinerWidget');
 
-// Load Star Wars Widget
-function starwars_widget_init() {
-    register_widget('StarWarsWidget');
+/**
+ * $widget (required) class name of the widget
+ */
+function cp_register_widget(string $widget) {
+    add_action('widgets_init', function() use ($widget){
+        register_widget($widget);
+    });
 }
-add_action('widgets_init', 'starwars_widget_init');
-
-// Load Weather Widget
-function weather_widget_init() {
-    register_widget('WeatherWidget');
-}
-add_action('widgets_init', 'weather_widget_init');
-
-// Load OneLiner Widget
-function oneliner_widget_init() {
-    register_widget('OneLinerWidget');
-}
-add_action('widgets_init', 'oneliner_widget_init');
