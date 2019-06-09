@@ -22,7 +22,7 @@
         $('.widget_weather-widget').each(function(i, widget) {
 
             let current_weather = $(widget).find('.current-weather');
-            
+
             let widget_city     = $(current_weather).data('city');
             let widget_country  = $(current_weather).data('country');
 
@@ -73,7 +73,7 @@
                 $(current_weather).html(errorOutput);
             });
 
-        }); // widget_weather-widget.forEach - end of weather widget
+        }); // end of weather widget
 
         $('.widget_starwars-widget').each(function(i, widget) {
 
@@ -110,7 +110,7 @@
                 $(content).html(errorOutput);
             });
 
-        }); // widget_starwars-widget.each - end of Star Wars widget
+        }); // end of Star Wars widget
 
     }); // document.ready
 
