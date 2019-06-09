@@ -21,6 +21,8 @@
 
         $('.widget_weather-widget').each(function(i, widget) {
 
+            let current_weather = $(widget).find('.current-weather');
+            
             let widget_city     = $(current_weather).data('city');
             let widget_country  = $(current_weather).data('country');
 
