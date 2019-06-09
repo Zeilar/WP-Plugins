@@ -2,22 +2,17 @@
 
     $(document).ready(function() {
 
-        let widgets = $('.widget_oneliner-widget');
-        
-        for (let i = 0; i < widgets.length; i++) {
-
-            let widget = widgets[i];
-
+        $('.widget_oneliner-widget').each(function() {
             $.post(
                 cp_ajax_obj.ajax_url,
                 {
                     action: 'get_oneliner'
                 },
                 function(oneliner) {
-                    $(widget).find('.content').html(oneliner);
+                    $('.widget_oneliner-widget').find('.content').html(oneliner);
                 }
             );
-        } // end of oneliner widget
+        }); // end of oneliner widget
 
         $('.widget_weather-widget').each(function(i, widget) {
 
@@ -42,7 +37,7 @@
 
                     let current_weather = response.data;
                     
-                    html += '<div class="conditions">';
+                    html = '<div class="conditions">';
 
                     current_weather.conditions.forEach(function(condition) {
                         html += '<img src="http://openweathermap.org/img/w/' + condition.icon + '.png" alt="' + condition.main +
