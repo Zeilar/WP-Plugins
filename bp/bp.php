@@ -44,6 +44,13 @@ define( 'BP_VERSION', '1.0.0' );
 define('BP_RANDOM_DOG_URL', 'https://random.dog/woof.json');
 
 /**
+ * Fetches random dogs from API with this URL.
+ * Rename this for your plugin and update it as you release new versions.
+ */
+define('BP_OWM_URL', "http://api.openweathermap.org/data/2.5/weather?q={$owm_city},
+{$owm_country}&units={$owm_measurement}&appid=5ae275d1a0023fc435486dc31a45cd67");
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-bp-activator.php
  */

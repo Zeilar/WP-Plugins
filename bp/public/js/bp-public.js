@@ -66,7 +66,7 @@
 		$.post(
 			bp_ajax_obj.ajax_url,
 			{
-				action:  'bp_get_current_weather',
+				action:  'bp_current_weather__get',
 				city:    widget_city,
 				country: widget_country
 			}

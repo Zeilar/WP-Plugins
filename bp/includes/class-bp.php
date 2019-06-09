@@ -85,8 +85,8 @@ class Bp {
 
 		// ajax
 		$this->register_ajax_action('bp_random_dog__get');
-		//$this->register_ajax_action('ajax_bp_get_current_weather');
-		//$this->ajax_bp_get_current_weather();
+		$this->register_ajax_action('ajax_bp_current_weather__get');
+		$this->ajax_bp_current_weather__get();
 	}
 
 	/**
@@ -117,6 +117,11 @@ class Bp {
 		 * The class that controls the weather widget.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-weather-widget.php';
+
+		/**
+		 * The logic for the OWM API.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/owmapi.php';
 
 		/**
 		 * The class that controls the dog widget.
@@ -201,7 +206,7 @@ class Bp {
 	/**
 	 * Registers widgets.
 	 * 
-	 * Params: (string $widget) - class name of the widget file
+	 * Params: (string $widget) - class name of the widget file, required
 	 *
 	 * @since    1.0.0
 	 */
@@ -214,18 +219,24 @@ class Bp {
 	/**
 	 * Registers Ajax actions.
 	 * 
-	 * Params:
+	 * Params: (string $ajax_action) - name of the Ajax action, required
 	 *
 	 * @since    1.0.0
 	 */
-	public function register_ajax_action($ajax_action) {
+	public function register_ajax_action(string $ajax_action) {
 		add_action('wp_ajax_' . $ajax_action, [$this, 'ajax_' . $ajax_action]);
 		add_action('wp_ajax_nopriv_' . $ajax_action, [$this, 'ajax_' . $ajax_action]);
 	}
 
-	/*public function ajax_bp_get_current_weather() {
-		echo "hidfgdf";
-	}*/
+	public function ajax_bp_current_weather__get() {
+		/*$current_weather_request = owm_get_current_weather($_POST['city'], $_POST['country']);
+
+		if ($current_weather_request['success']) {
+			wp_send_json_success($current_weather_request['data']);
+		} else {
+			wp_send_json_error($current_weather_request['error']);
+		}*/
+	}
 
 	public function ajax_bp_random_dog__get() {
 		$response = wp_remote_get(BP_RANDOM_DOG_URL);
