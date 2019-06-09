@@ -235,12 +235,11 @@ class Bp {
 				'error_msg' => wp_remote_retrieve_response_message($response)
 			]);
 		}
-		$body = json_decode(wp_remote_retrieve_body($response));
 
 		$file_extension = strtolower(
 			pathinfo(
 				parse_url(
-					$body->url,
+					json_decode(wp_remote_retrieve_body($response))->url,
 					PHP_URL_PATH
 				), 
 				PATHINFO_EXTENSION
@@ -250,7 +249,7 @@ class Bp {
 
 		wp_send_json_success([
 			'type' => in_array($file_extension, $video_extensions) ? 'video' : 'image',
-			'src' => $body->url
+			'src' => json_decode(wp_remote_retrieve_body($response))->url,
 		]);
 	}
 

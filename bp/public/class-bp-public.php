@@ -96,8 +96,10 @@ class Bp_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bp-public.js', array( 'jquery' ), $this->version, true );
-
+		wp_enqueue_script($this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bp-public.js', array( 'jquery' ), $this->version, true);
+		wp_localize_script($this->plguin_name, 'cp_ajax_obj', [
+			'ajax_url' => admin_url('admin-ajax.php'),
+		]);
 	}
 
 }
