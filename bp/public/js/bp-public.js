@@ -2,7 +2,7 @@
 	'use strict';
 	/////////////
 
-	/*$('.widget_weather-widget').each(function(i, widget) {
+	$('.widget_weather-widget').each(function(i, widget) {
 
 		let 
 			current_weather = $(widget).find('.current-weather'),
@@ -10,9 +10,9 @@
 			widget_country  = $(current_weather).data('country');
 
 		$.post(
-			'wordpress.test/wp-admin/admin-ajax.php',
+			'http://wordpress.test/wp-admin/admin-ajax.php',
 			{
-				action:  'bp_get_current_weather',
+				action:  'bp_current_weather__get',
 				city:    widget_city,
 				country: widget_country
 			}
@@ -56,7 +56,7 @@
 			$(current_weather).html(errorOutput);
 		});
 
-	}); // end of weather widget*/
+	}); // end of weather widget
 
 	$('.widget_dog-widget').each(function(i, widget) {
 		$.post(

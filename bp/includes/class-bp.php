@@ -85,7 +85,7 @@ class Bp {
 
 		// ajax
 		$this->register_ajax_action('bp_random_dog__get');
-		$this->register_ajax_action('ajax_bp_current_weather__get');
+		$this->register_ajax_action('bp_current_weather__get');
 	}
 
 	/**
@@ -228,13 +228,13 @@ class Bp {
 	}
 
 	public function ajax_bp_current_weather__get() {
-		/*$current_weather_request = owm_get_current_weather($_POST['city'], $_POST['country']);
+		$current_weather_request = owm_get_current_weather($_POST['city'], $_POST['country']);
 
 		if ($current_weather_request['success']) {
 			wp_send_json_success($current_weather_request['data']);
 		} else {
 			wp_send_json_error($current_weather_request['error']);
-		}*/
+		}
 	}
 
 	public function ajax_bp_random_dog__get() {
