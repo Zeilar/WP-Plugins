@@ -86,7 +86,6 @@ class Bp {
 		// ajax
 		$this->register_ajax_action('bp_random_dog__get');
 		$this->register_ajax_action('ajax_bp_current_weather__get');
-		$this->ajax_bp_current_weather__get();
 	}
 
 	/**

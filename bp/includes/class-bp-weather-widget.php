@@ -51,7 +51,7 @@ class WeatherWidget extends WP_Widget {
 				<span class="loading"><?php _e('Loading...', 'bp'); ?></span>
 			</div>
 		<?php
-
+		
 		// close widget
 		echo $after_widget;
 	}
