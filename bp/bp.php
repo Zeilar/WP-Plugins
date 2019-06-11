@@ -44,6 +44,17 @@ define( 'BP_VERSION', '1.0.0' );
 define('BP_RANDOM_DOG_URL', 'https://random.dog/woof.json');
 
 /**
+ * Current version av Mappy Weathery widget
+ */
+define('BP_MAPPY_WEATHERY_VERSION', '1.0.0');
+
+/**
+ * Path and URL for Mappy Weathery widget
+ */
+define('BP_MAPPY_WEATHERY_DIR_URL', plugin_dir_url(__FILE__));
+define('BP_MAPPY_WEATHERY_DIR_PATH', plugin_dir_path(__FILE__));
+
+/**
  * Fetches random dogs from API with this URL.
  * Rename this for your plugin and update it as you release new versions.
  */

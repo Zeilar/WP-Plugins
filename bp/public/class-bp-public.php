@@ -52,6 +52,7 @@ class Bp_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		$this->define_shortcodes();
 	}
 
 	/**
@@ -97,6 +98,36 @@ class Bp_Public {
 		 */
 
 		wp_enqueue_script($this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bp-public.js', array( 'jquery' ), $this->version, true);
+	}
+
+	/**
+	 * Register shortcode
+	 */
+	public function define_shortcodes() {
+		add_shortcode('mappy', [$this, 'do_shortcode_mappy']);
+	}
+
+	/**
+	 * Execute shortcode 'mappy'
+	 * 
+	 * @param array $user_atts
+	 * @return string
+	 */
+	public function do_shortcode_mappy($user_atts) {
+		$default_atts = [
+			'city' => false,
+			'country' => false,
+		];
+
+		$atts = shortcode_atts($default_atts, $user_atts, 'mappy');
+
+		if (!$atts['city']) {
+			return '<div id="mappy-weather"><div class="error">You must specify a city!</div></div>';
+		} else if (!$atts['country']) {
+			return '<div id="mappy-weather"><div class="error">You must specifiy a country!</div></div>';
+		}
+
+		return '<div id="mappy-weather" data-city="' . $atts['city'] . '" data-country="' . $atts['country'] . '"><div id="map"></div></div>';
 	}
 
 }
