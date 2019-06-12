@@ -107,8 +107,7 @@ class Bp {
 	private function load_dependencies() {
 
 		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
+		 * The class responsible for orchestrating the actions and filters of the core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-loader.php';
 
@@ -128,8 +127,7 @@ class Bp {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-dog-widget.php';
 
 		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
+		 * The class responsible for defining internationalization functionality of the plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bp-i18n.php';
 
@@ -139,8 +137,7 @@ class Bp {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-bp-admin.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
+		 * The class responsible for defining all actions that occur in the public-facing side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-bp-public.php';
 
@@ -205,20 +202,20 @@ class Bp {
 	/**
 	 * Registers widgets.
 	 * 
-	 * Params: (string $widget) - class name of the widget file, required
+	 * @param string $widget - class name of the widget file, required
 	 *
 	 * @since    1.0.0
 	 */
-	public function register_widget(string $widget) {
-		add_action('widgets_init', function() use ($widget){
-			register_widget($widget);
+	public function register_widget_starwars() {
+		add_action('widgets_init', function(){
+			register_widget('StarWarsWidget');
 		});
 	}
 
 	/**
 	 * Registers Ajax actions.
 	 * 
-	 * Params: (string $ajax_action) - name of the Ajax action, required
+	 * @param string $ajax_action - name of the Ajax action, required
 	 *
 	 * @since    1.0.0
 	 */
@@ -242,7 +239,7 @@ class Bp {
 		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) != 200) {
 			wp_send_json_error([
 				'error_code' => wp_remote_retrieve_response_code($response),
-				'error_msg' => wp_remote_retrieve_response_message($response)
+				'error_msg' => wp_remote_retrieve_response_message($response),
 			]);
 		}
 
