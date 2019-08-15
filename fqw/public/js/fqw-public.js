@@ -8,7 +8,7 @@
 		let category = $(quote).data('category');
 		
 		$.post(
-			'http://wordpress.test/wp-admin/admin-ajax.php',
+			fqw_ajax_obj.ajax_url,
 			{
 				action:   'fqw_famous_quote__get',
 				category:  category,

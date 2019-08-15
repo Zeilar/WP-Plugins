@@ -54,6 +54,11 @@ class Fqw_Public {
 
 	}
 
+	public function localize_scripts() {
+		$test = wp_localize_script('fqw', 'fqw_ajax_obj', ['ajax_url' => admin_url('admin-ajax.php')] );
+		var_dump($test);
+	}
+
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
