@@ -1,7 +1,7 @@
 <?php
 
 // filters the $content
-add_filter('the_content', function($content){
+add_filter('the_content', function($content) {
     if (
         is_single() && 
         is_main_query() && 
